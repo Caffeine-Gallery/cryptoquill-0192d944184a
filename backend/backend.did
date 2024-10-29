@@ -6,7 +6,17 @@ type Post =
    timestamp: int;
    title: text;
  };
+type Comment = 
+ record {
+   author: text;
+   content: text;
+   id: nat;
+   postId: nat;
+   timestamp: int;
+ };
 service : {
+  addComment: (nat, text, text) -> (nat);
   createPost: (text, text, text) -> (nat);
+  getComments: (nat) -> (vec Comment) query;
   getPosts: () -> (vec Post) query;
 }
